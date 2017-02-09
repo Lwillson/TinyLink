@@ -1,1 +1,10 @@
 <h2>Create a Tiny Link</h2>
+
+<%= form_for @link do |f| %>
+  <p>
+    Url: <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.submit 'Create Tiny Link' %>
+  </p>
+<% end %>
