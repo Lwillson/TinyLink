@@ -12,13 +12,16 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new(allowed_params)
-    if @link.save
-      flash[:notice] = 'Successfully created link.'
+  	@link = begin
+  		Link.find_or_create_by(allowed_params)
+	rescue ActiveRecord::RecordNotUnique
+  		retry
+	end
 
-      redirect_to @link
+    if @link 
+    	redirect_to @link 
     else
-      render :new
+    	render :new
     end
   end
 
