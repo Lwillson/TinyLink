@@ -8,12 +8,15 @@ class Link < ActiveRecord::Base
 		BASE_URL + self.encode_id
 	end
 
-	# class method
+	def self.link_for_str(str)
+		Link.find(self.decode(str))
+	end
+
 	# gives you the id for the identifier portion of the tiny link
-	def decode_tiny_link_identifier(str)
-		i = 0
-		str.each_char { |c| i = i * N + ALPHABET.index(c) }
-  		i
+	def self.decode(str)
+		id = 0
+		str.each_char { |c| id = id * N + ALPHABET.index(c) }
+  		id
 	end
 
 	# returns the identifying string that is mapped from the id of the link

@@ -22,6 +22,11 @@ class LinksController < ApplicationController
     end
   end
 
+  def go
+  	@link = Link.link_for_str(params[:code])
+  	redirect_to @link.url
+  end
+
   private
 
   def allowed_params
