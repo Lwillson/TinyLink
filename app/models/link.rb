@@ -4,6 +4,9 @@ class Link < ActiveRecord::Base
 
 	BASE_URL = 'tinyurl-lwillson.herokuapp.com/'
 
+	validates :url, presence: true
+	before_save :add_url_protocol
+
 	def to_tiny_url
 		BASE_URL + self.encode_id
 	end
@@ -28,5 +31,11 @@ class Link < ActiveRecord::Base
 		    self.id /= N
 		end
 		str.reverse
+	end
+
+	def add_url_protocol
+ 		unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
+    		self.url = "http://#{self.url}"
+  		end
 	end
 end
