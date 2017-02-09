@@ -2,7 +2,7 @@ class Link < ActiveRecord::Base
 	ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).join
 	N = ALPHABET.length
 
-	BASE_URL = 'tinyurl-lwillson.herokuapp.com/'
+	BASE_URL = 'https://tnylnk.herokuapp.com/'
 
 	validates :url, presence: true
 	before_save :add_url_protocol
