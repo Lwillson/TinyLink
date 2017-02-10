@@ -28,6 +28,7 @@ class LinksController < ApplicationController
   # maps the short link into the full url and redirects there
   def go
   	@link = Link.link_for_str(params[:code])
+    Visit.create(link: @link, user: @current_user)
   	redirect_to @link.url
   end
 
