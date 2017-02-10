@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
-	has_many :visits
+  has_many :visits
 
-	attr_accessor :name, :password
+  attr_accessor :name, :password
 
-	before_save :encrypt_password
-	validates_confirmation_of :password
-	validates_presence_of :password, :on => :create
-	validates_presence_of :name
-	validates_uniqueness_of :name
+  before_save :encrypt_password
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  validates_presence_of :name
+  validates_uniqueness_of :name
   
-  def self.authenticate(name, password)
-    user = find_by_name(name)
+  def self.authenticate(username, password)
+    user = find_by_name(username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
