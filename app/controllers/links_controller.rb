@@ -13,15 +13,15 @@ class LinksController < ApplicationController
 
   def create
   	@link = begin
-  		Link.find_or_create_by(allowed_params)
+  	  Link.find_or_create_by(allowed_params)
 	rescue ActiveRecord::RecordNotUnique
-  		retry
+  	  retry
 	end
 
     if @link 
-    	redirect_to @link 
+      redirect_to @link 
     else
-    	render :new
+      render :new
     end
   end
 
@@ -34,6 +34,10 @@ class LinksController < ApplicationController
   def users
   	@link = Link.find(params[:id])
   	json_response(@link.users)
+  end
+
+  def user_info
+  	
   end
 
   private
