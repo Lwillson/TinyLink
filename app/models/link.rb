@@ -4,6 +4,9 @@ class Link < ActiveRecord::Base
 
 	BASE_URL = 'https://tnylnk.herokuapp.com/'
 
+	has_many :visits
+	has_many :users, through: :visits
+
 	validates :url, presence: true
 	before_save :add_url_protocol
 
