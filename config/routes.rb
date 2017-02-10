@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :links
 
   get ':code', to: 'links#go'
+  get '/links/:id/users', to: 'links#users'
 end
