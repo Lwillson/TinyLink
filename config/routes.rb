@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get ':code', to: 'links#go'
   get '/links/:id/users', to: 'links#users'
+  get '/links/:id/user_counts', to: 'links#user_counts'
 
   # authentication
   get    '/login',   to: 'sessions#new'

@@ -41,4 +41,11 @@ class Link < ActiveRecord::Base
     		self.url = "http://#{self.url}"
   		end
 	end
+
+	def user_counts
+		user_visits = self.visits.group_by{ |v| v.user.name }
+		user_counts = {}
+		user_visits.each {|key,val| user_counts[key]= val.length }
+		user_counts
+	end
 end

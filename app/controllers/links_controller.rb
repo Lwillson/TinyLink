@@ -37,6 +37,11 @@ class LinksController < ApplicationController
   	json_response(@link.users)
   end
 
+  def user_counts
+    @link = Link.find(params[:id])
+    json_response(@link.user_counts)
+  end
+
   private
 
   def allowed_params
