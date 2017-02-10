@@ -18,7 +18,7 @@ class LinksController < ApplicationController
   	  retry
 	end
 
-    if @link 
+    if @link
       redirect_to @link 
     else
       render :new
@@ -34,10 +34,6 @@ class LinksController < ApplicationController
   def users
   	@link = Link.find(params[:id])
   	json_response(@link.users)
-  end
-
-  def user_info
-  	
   end
 
   private
